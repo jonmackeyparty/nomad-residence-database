@@ -6,7 +6,7 @@ Nomads - who have a secure login[ie: password_digest], name, has_many :residence
                                         has_many :roommate_to_nomad_loans [features: amount]
                                         has_many :landlords [features: name, has_many: residences, has_many :nomads, through: :residences], through: :residences
 
-Roommates - who have a name and an address, and belongs_to a :residence, has_many :nomad_to_roommate_loans, has_many :roommate_to_nomad_loans
+Roommates - who have a name and belongs_to a :residence, has_many :nomad_to_roommate_loans, has_many :roommate_to_nomad_loans
 
 Landlords - who have a name and has_many: residences, has_many :nomads, through: :residences
 
