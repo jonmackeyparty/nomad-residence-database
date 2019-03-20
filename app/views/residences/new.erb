@@ -1,0 +1,24 @@
+<h2>Create New Residence</h2>
+
+<form action="/residences" method="POST">
+  <h3>Residence Info</h3>
+  <label>Address:</label>
+    <input type="text" name="residence[address]" id="residence_address">
+    <label>Deposit Amount</label>
+    <input type="text" name="residence[deposit]" id="residence_deposit">
+  <p>
+  <label>Enter a new Landlord's name</label>
+    <input type="text" name="landlord[name]" id="new_landlord_name">
+  <p>
+  <h3>Who lives/lived here with you?</h3>
+  <label>Enter a new Roommate's name:</label>
+    <input type="text" name="roommate[name]" id="new_roommate_name">
+
+  <p>
+    <h3>Is this your current residence?</h3>
+    <input type="radio" name="residence[primary_residence]" value=true>Yes</input>
+    <input type="radio" name="residence[primary_residence]" value=false>No</input>
+  <p>
+  <input type="submit" value="Create New Residence">
+
+</form>

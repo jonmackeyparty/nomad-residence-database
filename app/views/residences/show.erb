@@ -1,0 +1,12 @@
+<h2><%=@residence.address%></h2>
+<h3>Landlord name:</h3><%=@residence.landlord.name%>
+<h3>Roommates:</h3>
+  <%@residence.roommates.each do |roommate|%>
+  <%=roommate.name%><br>
+  <%end%>
+<h3>Deposit Amount:</h3><%=@residence.deposit%>
+<h3>Deposit Refunded?</h3>
+
+<form action="/residences/<%=@residence.id%>/edit" method="GET">
+<input type="submit" value="Edit Residence">
+</form>

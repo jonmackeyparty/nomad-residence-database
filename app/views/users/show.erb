@@ -1,0 +1,8 @@
+<h3>Welcome to your profile, <%=@user.name%>!</h3>
+<p>
+  You have the following addresses on file:<br>
+  <%@residences.each do |residence|%>
+  <a href="/residences/<%=residence.id%>"><%=residence.address%></a><br>
+  <%end%>
+<p>
+  You can view each residence to edit, <a href='/residences/new'>add an address</a>, and <a href='/loans/new'>resolve debts</a>.

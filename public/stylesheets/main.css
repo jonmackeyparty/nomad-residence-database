@@ -13,8 +13,8 @@
 
   /* --- Welcome Page Styles --- */
   body {
-    background-color: lightblue;
-    color: #333;
+    background-color: #ebe1df;
+    color: black;
     font-family: Sans-Serif;
     line-height: 18px;
   }
@@ -61,7 +61,7 @@
   }
 
   .sidebar {
-    background: #eee;
+    background: #fb9fa4;
     border: 1px solid #ccc;
     float: right;
     padding: 2.08333333333%; /* 5px / 240px */
@@ -81,6 +81,7 @@
     margin-top: 20px;
     padding-top: 20px;
   }
+
 }
 
 @media screen and (max-width: 600px) {

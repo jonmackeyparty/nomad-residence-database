@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190314200239) do
+ActiveRecord::Schema.define(version: 20190319233807) do
 
   create_table "landlords", force: :cascade do |t|
     t.string "name"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20190314200239) do
   create_table "nomads", force: :cascade do |t|
     t.string "name"
     t.string "password_digest"
+    t.string "username"
   end
 
   create_table "residences", force: :cascade do |t|
@@ -34,6 +35,8 @@ ActiveRecord::Schema.define(version: 20190314200239) do
     t.integer "deposit"
     t.integer "landlord_id"
     t.integer "nomad_id"
+    t.boolean "primary_residence", default: false, null: false
+    t.boolean "deposit_refunded",  default: false, null: false
   end
 
   create_table "roommate_to_nomad_loans", force: :cascade do |t|
