@@ -1,8 +1,14 @@
-<h3>Welcome to your profile, <%=@user.name%>!</h3>
+<h2>Welcome to your profile, <%=@user.name%>!</h2>
 <p>
-  You have the following addresses on file:<br>
+
+  You have the following addresses on file:
+<br>
   <%@residences.each do |residence|%>
   <a href="/residences/<%=residence.id%>"><%=residence.address%></a><br>
   <%end%>
+<p>
+  You have the following loans and debts on file:
+<p>
+  Your current Karma score is:
 <p>
   You can view each residence to edit, <a href='/residences/new'>add an address</a>, and <a href='/loans/new'>resolve debts</a>.
