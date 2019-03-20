@@ -5,8 +5,12 @@
   <%=roommate.name%><br>
   <%end%>
 <h3>Deposit Amount:</h3><%=@residence.deposit%>
-<h3>Deposit Refunded?</h3>
-
+<h3>Deposit Refunded?</h3><%=@deposit_status%>
+<p>
 <form action="/residences/<%=@residence.id%>/edit" method="GET">
 <input type="submit" value="Edit Residence">
+</form>
+<p>
+<form action="/users/<%=@user.id%>" method="GET">
+  <input type="submit" value="Cancel">
 </form>

@@ -12,6 +12,9 @@ class ResidencesController < ApplicationController
   post '/residences' do
     @user = current_user
     residence = Residence.create(:address => params[:residence][:address], :deposit => params[:residence][:deposit].to_i)
+      if params[:residence][:deposit_refunded]=="true"
+        residence.deposit_refunded=true
+      end
       if params[:residence][:primary_residence] == "true"
         residence.primary_residence=true
       end
@@ -29,6 +32,7 @@ class ResidencesController < ApplicationController
     residence.roommates << roommate
     residence.save
     @user.residences << residence
+    binding.pry
     redirect to "/users/#{@user.id}"
   end
 
@@ -36,7 +40,7 @@ class ResidencesController < ApplicationController
     if logged_in?
       @user=current_user
       @residence=@user.residences.find(params[:id])
-      @deposit_status=
+      @deposit_status=deposit_status
       erb :'residences/show'
     else
       erb :'login'

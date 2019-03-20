@@ -49,6 +49,10 @@ class ApplicationController < Sinatra::Base
     current_user.residences.find_by(:primary_residence => true)
   end
 
+  def deposit_status
+    @residence.deposit_refunded==true ? "Yes" : "No"
+  end
+
 end
 
 
