@@ -11,29 +11,31 @@ class ApplicationController < Sinatra::Base
 
   get '/' do
     if logged_in?
-      user = current_user
-      redirect to "/users/#{user.id}"
+      @user = current_user
+      redirect to "/users/#{@user.id}"
     end
       erb :'index'
   end
 
   get '/login' do
     if logged_in?
-      user = current_user
-      redirect to "/users/#{user.id}"
+      @user = current_user
+      redirect to "/users/#{@user.id}"
     else
       erb :'login'
     end
   end
 
   post '/login' do
-    @user=Nomad.find_by(:username => params[:username])
-    if @user && @user.authenticate(params[:password])
-      session[:user_id] = @user.id
-
-      redirect to "/users/#{@user.id}"
+    if !params[:username].empty? && !params[:password].empty?
+      @user=Nomad.find_by(:username => params[:username])
+      if @user && @user.authenticate(params[:password])
+        session[:user_id] = @user.id
+        redirect to "/users/#{@user.id}"
+      end
+    else
+      redirect '/login'
     end
-    redirect '/login'
   end
 
   helpers do

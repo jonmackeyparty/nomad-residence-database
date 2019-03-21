@@ -39,15 +39,15 @@
 <form action="/loans/<%=@roommate.id%>" method="POST">
     <input id="hidden" type="hidden" name="_method" value="patch">
 <small>
+    <label>Loan Amount:</label>
+    <input type='number' name="loan[amount]" id="loan_amount">
     <label>Item:</label>
     <input type='text' name="loan[line_item]" id="loan_line_item">
-    <label>Loan Amount:</label>
-    <input type='text' name="loan[amount]" id="loan_amount">
     <br>
+    <label>Debt Amount:</label>
+    <input type='number' name="debt[amount]" id="debt_amount">
     <label>Item:</label>
     <input type='text' name="debt[line_item]" id="debt_line_item">
-    <label>Debt Amount:</label>
-    <input type='text' name="debt[amount]" id="debt_amount">
 </small>
     <br>
     <input type="submit" value="Add Loan or Debt">
