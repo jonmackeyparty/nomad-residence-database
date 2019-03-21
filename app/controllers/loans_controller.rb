@@ -27,7 +27,7 @@ class LoansController < ApplicationController
         debt.save
       else
       end
-    erb :'/loans/show'
+    redirect to "/users/#{@user.id}"
   end
 
 
@@ -50,25 +50,17 @@ class LoansController < ApplicationController
   end
 
   delete '/loans/:id' do
-    if logged_in?
-      @user=current_user
+    @user=current_user
     loan = NomadToRoommateLoan.find(params[:id])
     loan.delete
-    erb :'/loans/show'
-    else
-      erb :'login'
-    end
+    redirect to "/users/#{@user.id}"
   end
 
   delete '/debts/:id' do
-    if logged_in?
-      @user=current_user
+    @user=current_user
     debt = RoommateToNomadLoan.find(params[:id])
     debt.delete
-    erb :'/loans/show'
-    else
-      erb :'login'
-    end
+    redirect to "/users/#{@user.id}"
   end
 
 

@@ -18,11 +18,11 @@
 
 <p>
   <h3>Who lives/lived here with you?</h3>
-  <label>Select an existing Roommate:</label><br>
-    <%@user.roommates.each do |roommate|%>
-      <input type="checkbox" name="roommate[roommate_ids][]" value="<%=roommate.id%>" id="roommate_<%=roommate.id%>" <%='checked' if @residence.roommates.include?(roommate)%>><%=roommate.name%></input><br>
+    <%@residence.roommates.each do |roommate|%>
+      <input type="checkbox" name="roommate[roommate_ids][]" value='<%=roommate.id%>' id="roommate_<%=roommate.id%>" <%='checked' if @residence.roommates.include?(roommate)%>> <%=roommate.name%></input><br>
     <%end%>
-  <label>Or enter a new Roommate's name:</label>
+  <br>
+  <label>Enter a new Roommate's name:</label>
     <input type="text" name="roommate[name]" id="new_roommate_name">
 
 

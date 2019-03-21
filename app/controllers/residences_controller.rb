@@ -84,13 +84,23 @@ class ResidencesController < ApplicationController
       else
         @residence.landlord=Landlord.find(params[:landlord][:landlord_id].first)
       end
-
+    tmp = []
       if params[:roommate][:roommate_ids]
         params[:roommate][:roommate_ids].each do |id|
-          roommate2=Roommate.find(id)
-            if !@residence.roommates.include?(roommate2)
-              @residence.roommates << roommate2
+          roommate_=Roommate.find(id)
+            if roommate_
+              tmp << roommate_
             end
+            if !@residence.roommates.include?(roommate_)
+              @residence.roommates << roommate_
+            end
+        end
+      end
+
+    batch_delete=@residence.roommates - tmp
+      if batch_delete
+        batch_delete.each do |roommate|
+          Roommate.find(roommate.id).delete
         end
       end
 
