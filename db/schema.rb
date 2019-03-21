@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190319233807) do
+ActiveRecord::Schema.define(version: 20190320155659) do
 
   create_table "landlords", force: :cascade do |t|
     t.string "name"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20190319233807) do
     t.date    "date"
     t.integer "nomad_id"
     t.integer "roommate_id"
+    t.string  "line_item"
   end
 
   create_table "nomads", force: :cascade do |t|
@@ -44,6 +45,7 @@ ActiveRecord::Schema.define(version: 20190319233807) do
     t.date    "date"
     t.integer "nomad_id"
     t.integer "roommate_id"
+    t.string  "line_item"
   end
 
   create_table "roommates", force: :cascade do |t|

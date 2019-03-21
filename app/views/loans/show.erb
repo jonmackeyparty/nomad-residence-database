@@ -1,0 +1,11 @@
+<h2>Manage Loans and Debts</h2>
+
+<h3>Roommates:</h3>
+<%@user.residences.each do |residence|%>
+  <%residence.roommates.each do |roommate|%>
+    <h4><%=roommate.name%></h4>
+    <form action="/loans/<%=roommate.id%>/edit" method="GET">
+    <input type="submit" value="Manage Debts">
+    </form>
+  <%end%>
+<%end%>

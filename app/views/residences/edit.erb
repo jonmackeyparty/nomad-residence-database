@@ -11,7 +11,7 @@
   <p>
   <label>Select an existing Landlord:</label><br>
     <%@user.landlords.each do |landlord|%>
-      <input type="radio" name="landlord[landlord_id]" value='<%=landlord.id%>' id="landlord_<%=landlord.id%>"> <%=landlord.name%></input><br>
+      <input type="radio" name="landlord[landlord_id][]" value='<%=landlord.id%>' id="landlord_<%=landlord.id%>" <%='checked' if @residence.landlord.id==landlord.id%>><%=landlord.name%></input><br>
     <%end%>
   <label>Or enter a new Landlord's name</label>
     <input type="text" name="landlord[name]" id="new_landlord_name">
@@ -20,8 +20,7 @@
   <h3>Who lives/lived here with you?</h3>
   <label>Select an existing Roommate:</label><br>
     <%@user.roommates.each do |roommate|%>
-      <input type="checkbox" name="roommate[roommate_ids][]" value="<%=roommate.id%>" id="roommate_<%=roommate.id%>">
-          <%=roommate.name%></input><br>
+      <input type="checkbox" name="roommate[roommate_ids][]" value="<%=roommate.id%>" id="roommate_<%=roommate.id%>" <%='checked' if @residence.roommates.include?(roommate)%>><%=roommate.name%></input><br>
     <%end%>
   <label>Or enter a new Roommate's name:</label>
     <input type="text" name="roommate[name]" id="new_roommate_name">
@@ -29,10 +28,10 @@
 
 <p>
   <h3>Is this your current residence?</h3>
-  <input type="radio" name="residence[primary_residence]" value=true>Yes
-  <input type="radio" name="residence[primary_residence]" value=false>No
+  <input type="radio" name="residence[primary_residence]" value=true <%='checked' if @residence.primary_residence==true%>>Yes
+  <input type="radio" name="residence[primary_residence]" value=false <%='checked' if @residence.primary_residence==false%>>No
 <p>
 <br>
-  <input type="submit" value="Submit">
+  <input type="submit" value="Edit Residence">
 
 </form>

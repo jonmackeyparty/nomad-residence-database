@@ -1,0 +1,54 @@
+<h2><%=@user.name%>: Loans and Debts to <%=@roommate.name%></h2>
+
+<h3>Loans:</h3>
+<%if @loans=="0"%>
+  <%=@loans%>
+<%else%>
+<small>
+  <%@loans.each do |loan|%>
+    <u><%=loan.date%></u>
+    <br>
+    <%=loan.line_item%>: $<%=loan.amount%>
+      <form action="/loans/<%=loan.id%>" method="post">
+        <input name="_method" type="hidden" value="delete">
+        <button type="submit">Delete Loan</button>
+      </form>
+  <%end%>
+</small>
+<%end%>
+
+<h3>Debts:</h3>
+<%if @debts=="0"%>
+  <%=@debts%>
+<%else%>
+<small>
+  <%@debts.each do |debt|%>
+    <u><%=debt.date%></u>
+    <br>
+    <%=debt.line_item%>: <%=debt.amount%>
+    <form action="/debts/<%=debt.id%>" method="post">
+      <input name="_method" type="hidden" value="delete">
+      <button type="submit">Delete Debt</button>
+    </form>
+  <%end%>
+</small>
+<%end%>
+
+<h3>Add New Loan or Debt:</h3>
+
+<form action="/loans/<%=@roommate.id%>" method="POST">
+    <input id="hidden" type="hidden" name="_method" value="patch">
+<small>
+    <label>Loan For:</label>
+    <input type='text' name="loan[line_item]" id="loan_line_item">
+    <label>Loan Amount:</label>
+    <input type='text' name="loan[amount]" id="loan_amount">
+    <br>
+    <label>Debt For:</label>
+    <input type='text' name="debt[line_item]" id="debt_line_item">
+    <label>Debt Amount:</label>
+    <input type='text' name="debt[amount]" id="debt_amount">
+</small>
+    <br>
+    <input type="submit" value="Add Loan or Debt">
+</form>

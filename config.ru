@@ -9,3 +9,4 @@ use Rack::MethodOverride
 run ApplicationController
 use ResidencesController
 use UsersController
+use LoansController

@@ -12,7 +12,8 @@ class UsersController < ApplicationController
   get '/users/:id' do
     @user = Nomad.find(params[:id])
     @residences = @user.residences
-
+    @loans=@user.nomad_to_roommate_loans
+    @debts=@user.roommate_to_nomad_loans
     erb :'/users/show'
   end
 

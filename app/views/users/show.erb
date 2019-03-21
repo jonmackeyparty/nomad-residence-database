@@ -6,9 +6,24 @@
   <%@residences.each do |residence|%>
   <a href="/residences/<%=residence.id%>"><%=residence.address%></a><br>
   <%end%>
+  <br>
+  Click <a href='/residences/new'>here</a> to add an address.
 <p>
   You have the following loans and debts on file:
+  <ul>
+    <%@loans.each do |loan|%>
+      <li>>$<%=loan.amount%> to <%=Roommate.find(loan.roommate_id).name%> for <%=loan.line_item%></li>
+  <%end%>
+  </ul>
+<p>
+  <ul>
+    <%@debts.each do |debt|%>
+      <li>>$<%=debt.amount%> from <%=Roommate.find(debt.roommate_id).name%> for <%=debt.line_item%></li>
+  <%end%>
+  </ul>
+<p>
+<p>
+  Click <a href='/loans'>here</a> to manage debts.
 <p>
   Your current Karma score is:
 <p>
-  You can view each residence to edit, <a href='/residences/new'>add an address</a>, and <a href='/loans/new'>resolve debts</a>.
