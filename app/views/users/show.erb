@@ -11,15 +11,23 @@
 <p>
   You have the following loans and debts on file:
   <ul>
-    <%@loans.each do |loan|%>
-      <li>>$<%=loan.amount%> to <%=Roommate.find(loan.roommate_id).name%> for <%=loan.line_item%></li>
-  <%end%>
+    <%@user.residences.each do |residence|%>
+      <%residence.roommates.each do |roommate|%>
+        <%roommate.nomad_to_roommate_loans.each do |loan|%>
+          <li>>$<%=loan.amount%> to <%=Roommate.find(loan.roommate_id).name%> for <%=loan.line_item%></li>
+        <%end%>
+      <%end%>
+    <%end%>
   </ul>
 <p>
   <ul>
-    <%@debts.each do |debt|%>
-      <li>>$<%=debt.amount%> from <%=Roommate.find(debt.roommate_id).name%> for <%=debt.line_item%></li>
-  <%end%>
+    <%@user.residences.each do |residence|%>
+      <%residence.roommates.each do |roommate|%>
+        <%roommate.roommate_to_nomad_loans.each do |loan|%>
+          <li>>$<%=loan.amount%> from <%=Roommate.find(loan.roommate_id).name%> for <%=loan.line_item%></li>
+        <%end%>
+      <%end%>
+    <%end%>
   </ul>
 <p>
 <p>
