@@ -10,21 +10,21 @@
   Click <a href='/residences/new'>here</a> to add an address.
 <p>
   You have the following loans and debts on file:
-  <ul>
+  <ul style="color:green">
     <%@user.residences.each do |residence|%>
       <%residence.roommates.each do |roommate|%>
         <%roommate.nomad_to_roommate_loans.each do |loan|%>
-          <li>>$<%=loan.amount%> to <%=Roommate.find(loan.roommate_id).name%> for <%=loan.line_item%></li>
+          <li>$<%=loan.amount%> to <%=Roommate.find(loan.roommate_id).name%> for <%=loan.line_item%>
         <%end%>
       <%end%>
     <%end%>
   </ul>
 <p>
-  <ul>
+  <ul style="color:red">
     <%@user.residences.each do |residence|%>
       <%residence.roommates.each do |roommate|%>
         <%roommate.roommate_to_nomad_loans.each do |loan|%>
-          <li>>$<%=loan.amount%> from <%=Roommate.find(loan.roommate_id).name%> for <%=loan.line_item%></li>
+          <li>$<%=loan.amount%> from <%=Roommate.find(loan.roommate_id).name%> for <%=loan.line_item%>
         <%end%>
       <%end%>
     <%end%>
@@ -34,4 +34,5 @@
   Click <a href='/loans'>here</a> to manage debts.
 <p>
   Your current Karma score is:
+  <h3><%=@karma%></h3>
 <p>

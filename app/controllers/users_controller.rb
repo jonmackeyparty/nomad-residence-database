@@ -14,6 +14,7 @@ class UsersController < ApplicationController
     @residences = @user.residences
     @loans=@user.nomad_to_roommate_loans
     @debts=@user.roommate_to_nomad_loans
+    @karma=karma_calculator.upcase
     erb :'/users/show'
   end
 

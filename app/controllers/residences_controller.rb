@@ -32,7 +32,6 @@ class ResidencesController < ApplicationController
     residence.roommates << roommate
     residence.save
     @user.residences << residence
-    binding.pry
     redirect to "/users/#{@user.id}"
   end
 

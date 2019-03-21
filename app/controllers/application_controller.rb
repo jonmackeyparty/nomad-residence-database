@@ -53,7 +53,32 @@ class ApplicationController < Sinatra::Base
     @residence.deposit_refunded==true ? "Yes" : "No"
   end
 
-end
-
+  def karma_calculator
+    ingress=[0]
+    egress=[0]
+    current_user.residences.each do |residence|
+      residence.roommates.each do |roommate|
+        roommate.nomad_to_roommate_loans.each do |loan|
+          ingress << loan.amount
+        end
+      end
+    end
+    current_user.residences.each do |residence|
+      residence.roommates.each do |roommate|
+        roommate.roommate_to_nomad_loans.each do |loan|
+          egress << loan.amount
+        end
+      end
+    end
+    karma=ingress.reduce(:+) - egress.reduce(:+)
+      if karma > 0
+          "Angelic"
+        elsif karma < 0
+          "Wack"
+        else
+          "Neutral"
+        end
+      end
+    end
 
 end
