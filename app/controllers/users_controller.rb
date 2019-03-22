@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   end
 
   get '/users/:id' do
-    if logged_in?
+    if logged_in? 
       @user = current_user
       @residences = @user.residences
       @loans=@user.nomad_to_roommate_loans
