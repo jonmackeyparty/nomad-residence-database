@@ -5,6 +5,7 @@ class ResidencesController < ApplicationController
       @user = current_user
       erb :'/residences/new'
     else
+      flash[:notice] = "You must be logged in to do this.  Please log in."
       erb :'login'
     end
   end
@@ -42,6 +43,7 @@ class ResidencesController < ApplicationController
       @deposit_status=deposit_status
       erb :'residences/show'
     else
+      flash[:notice] = "You must be logged in to do this.  Please log in."
       erb :'login'
     end
   end
@@ -52,6 +54,7 @@ class ResidencesController < ApplicationController
       @residence=@user.residences.find(params[:id])
       erb :'residences/edit'
     else
+      flash[:notice] = "You must be logged in to do this.  Please log in."
       erb :'login'
     end
   end
@@ -88,20 +91,14 @@ class ResidencesController < ApplicationController
       if params[:roommate][:roommate_ids]
         params[:roommate][:roommate_ids].each do |id|
           roommate_=Roommate.find(id)
-            if roommate_
-              tmp << roommate_
-            end
-            if !@residence.roommates.include?(roommate_)
-              @residence.roommates << roommate_
-            end
+          tmp << roommate_
+          @residence.roommates | [roommate_]
         end
       end
 
     batch_delete=@residence.roommates - tmp
       if batch_delete
-        batch_delete.each do |roommate|
-          Roommate.find(roommate.id).delete
-        end
+        batch_delete.each{|roommate| Roommate.find(roommate.id).delete}
       end
 
       if !params[:roommate][:name].empty?
@@ -109,19 +106,15 @@ class ResidencesController < ApplicationController
         @residence.roommates << roommate
       end
 
-      @residence.save
-      redirect to :"/residences/#{@residence.id}"
+    @residence.save
+    redirect to :"/residences/#{@residence.id}"
   end
 
   delete '/residences/:id' do
-    if logged_in?
       @user=current_user
-    residence = Residence.find(params[:id])
-    residence.delete
-    redirect to "/users/#{@user.id}"
-    else
-      erb :'login'
-    end
+      residence = Residence.find(params[:id])
+      residence.delete
+      redirect to "/users/#{@user.id}"
   end
 
 end

@@ -1,5 +1,5 @@
 
-<h3>Log In Below:</h3>
+<h2>Log In Below:</h2>
 <form method='POST' action='/login'>
   <label for='username'>User Name:</label>
   <input type='text' id='Username' name='username'><br>
@@ -7,3 +7,4 @@
   <input type='password' id='Password' name='password'><br>
   <input type="submit" id='Submit' value="submit">
 </form>
+<small style="color:red"><%= flash[:notice] %></small>

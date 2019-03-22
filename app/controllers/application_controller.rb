@@ -5,6 +5,7 @@ class ApplicationController < Sinatra::Base
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
+    register Sinatra::Flash
     enable :sessions
     set :session_secret, 'nomad'
   end
@@ -34,6 +35,7 @@ class ApplicationController < Sinatra::Base
         redirect to "/users/#{@user.id}"
       end
     else
+      flash[:notice] = "Please enter a valid username and password."
       redirect '/login'
     end
   end
@@ -76,7 +78,7 @@ class ApplicationController < Sinatra::Base
       if karma > 0
           "Angelic"
         elsif karma < 0
-          "Wack"
+          "Tainted"
         else
           "Neutral"
         end

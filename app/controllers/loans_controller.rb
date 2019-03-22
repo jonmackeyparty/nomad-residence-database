@@ -5,6 +5,7 @@ class LoansController < ApplicationController
       @user=current_user
       erb :'/loans/show'
     else
+      flash[:notice] = "You must be logged in to do this.  Please log in."
       erb :'login'
     end
   end
@@ -45,6 +46,7 @@ class LoansController < ApplicationController
       end
       erb :'/loans/edit'
     else
+      flash[:notice] = "You must be logged in to do this.  Please log in."
       erb :'login'
     end
   end
